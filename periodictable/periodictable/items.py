@@ -9,5 +9,11 @@ from itemloaders.processors import TakeFirst
 
 class PeriodictableItem(scrapy.Item):
     # define the fields for your item here like:
-    name = scrapy.Field()
+    column = scrapy.Field(
+        output_processor = TakeFirst()
+    )
+
+    row = scrapy.Field(
+        output_processor=TakeFirst()
+    )
 
