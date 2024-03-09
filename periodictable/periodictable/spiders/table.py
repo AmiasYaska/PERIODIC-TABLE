@@ -1,4 +1,5 @@
 import scrapy
+import json
 
 
 class TableSpider(scrapy.Spider):
@@ -10,7 +11,6 @@ class TableSpider(scrapy.Spider):
         yield scrapy.Request(
             url="https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON",
             method="GET",
-            # body=json.dumps(query),
             headers={
                 "Content-Type": "application/json"
             },
@@ -18,5 +18,7 @@ class TableSpider(scrapy.Spider):
         )
 
     def parse(self, response):
-        print(response.body)
+        data = json.loads(response.body)
+        column = data.get("Table").get("Columns").get("Column")
+        row = data.get("Table").get("Row")
 
