@@ -4,16 +4,10 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-from itemloaders.processors import TakeFirst
 
 
 class PeriodictableItem(scrapy.Item):
     # define the fields for your item here like:
-    column = scrapy.Field(
-        output_processor = TakeFirst()
-    )
+    pass
 
-    row = scrapy.Field(
-        output_processor=TakeFirst()
-    )
 

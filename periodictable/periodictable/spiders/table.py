@@ -1,6 +1,5 @@
 import scrapy
 import json
-from ..items import PeriodictableItem
 
 
 class TableSpider(scrapy.Spider):
@@ -26,10 +25,9 @@ class TableSpider(scrapy.Spider):
         for i in rows:
             cells = i.get("Cell")
 
+            element_data = {}
             for (column, row) in zip(columns, cells):
-                periodic_table = PeriodictableItem()
+                element_data[column] = row
 
-                column = periodic_table["column"]
-                row = periodic_table["row"]
+            yield element_data
 
-                yield periodic_table
